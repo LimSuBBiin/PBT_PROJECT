@@ -6,7 +6,9 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.execute.domain.Gen;
 import org.execute.domain.Mem;
+import org.execute.domain.Position;
 import org.execute.dto.MemDto;
 import org.springframework.stereotype.Repository;
 
@@ -79,7 +81,7 @@ public class MemRepository {
     }
 
     @Transactional
-    public void updateMyPage(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed){
+    public void updateMyPage(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed, Gen memGen, String memHeight, String memWeight, Position mainPst, Position subPst, String memHist){
         Mem mem = em.find(Mem.class, memMstIdx);
         if(mem == null) {
             throw new RuntimeException("사용자를 찾을 수 없습니다.");
@@ -91,6 +93,12 @@ public class MemRepository {
         mem.setPhonTal(phonTal);
         mem.setEmalHed(emalHed);
         mem.setEmalTal(emalTal);
+        mem.setMemGen(memGen);
+        mem.setMemHeight(memHeight);
+        mem.setMemWeight(memWeight);
+        mem.setMainPst(mainPst);
+        mem.setSubPst(subPst);
+        mem.setMemHist(memHist);
 
         em.merge(mem);
         System.out.println("사용자 정보가 성공적으로 수정되었습니다.");
@@ -130,7 +138,7 @@ public class MemRepository {
     public MemDto findMemProfile(Long memMstIdx) {
         try {
             return em.createQuery(
-                            "SELECT new org.execute.dto.MemDto(m.memMstIdx, m.memSeq, m.memAct, m.memPwd, m.memNme, m.phonHed, m.phonBod, m.phonTal, m.emalTal, m.emalHed, m.memGen, m.memRole) " +
+                            "SELECT new org.execute.dto.MemDto(m.memMstIdx, m.memSeq, m.memAct, m.memPwd, m.memNme, m.phonHed, m.phonBod, m.phonTal, m.emalTal, m.emalHed, m.memGen, m.memHeight, m.mainPst, m.subPst, m.memWeight, m.memHist)  " +
                                     "FROM Mem m " +
                                     "WHERE m.memMstIdx = :memMstIdx", MemDto.class)
                     .setParameter("memMstIdx", memMstIdx)

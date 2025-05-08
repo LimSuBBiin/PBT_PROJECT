@@ -4,8 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.execute.domain.Gen;
+import org.execute.domain.Position;
 
-@Builder
+
 @Getter
 public class MemDto {
     private Long memMstIdx;
@@ -18,8 +20,14 @@ public class MemDto {
     private String phonTal;
     private String emalTal;
     private String emalHed;
-    private String memGen;
-    private String memRole;
+    private Gen memGen;
+    private String memHeight;
+    private Position mainPst;
+    private Position subPst;
+    private String memWeight;
+    private String memHist;
+
+
 
     public void setEmalHed(String emalHed) {
         this.emalHed = emalHed;
@@ -61,18 +69,50 @@ public class MemDto {
         this.emalTal = emalTal;
     }
 
-    public void setMemGen(String memGen) {
+    public void setMemGen(Gen memGen) {
         this.memGen = memGen;
     }
 
-    public void setMemRole(String memRole) {
-        this.memRole = memRole;
+    public void setMemHeight(String memHeight) {
+        this.memHeight = memHeight;
     }
 
+    public void setMainPst(Position mainPst) {
+        this.mainPst = mainPst;
+    }
+
+    public void setSubPst(Position subPst) {
+        this.subPst = subPst;
+    }
+
+    public void setMemWeight(String memWeight) {
+        this.memWeight = memWeight;
+    }
+
+    public void setMemHist(String memHist) {
+        this.memHist = memHist;
+    }
     // 기본 생성자 추가
     public MemDto() {}
-
-    public MemDto(Long memMstIdx, Long memSeq, String memAct, String memPwd, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed,String memGen, String memRole) {
+    @Builder
+    public MemDto(
+            Long memMstIdx,
+            Long memSeq,
+            String memAct,
+            String memPwd,
+            String memNme,
+            String phonHed,
+            String phonBod,
+            String phonTal,
+            String emalTal,
+            String emalHed,
+            Gen memGen,
+            String memHeight,       // 순서 여기!
+            Position mainPst,
+            Position subPst,
+            String memWeight,
+            String memHist
+    ) {
         this.memMstIdx = memMstIdx;
         this.memSeq = memSeq;
         this.memAct = memAct;
@@ -84,7 +124,11 @@ public class MemDto {
         this.emalTal = emalTal;
         this.emalHed = emalHed;
         this.memGen = memGen;
-        this.memRole = memRole;
+        this.memHeight = memHeight; // 여기에 맞춰야 함
+        this.mainPst = mainPst;
+        this.subPst = subPst;
+        this.memWeight = memWeight;
+        this.memHist = memHist;
     }
 }
 

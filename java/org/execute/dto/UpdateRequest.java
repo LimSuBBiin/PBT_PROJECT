@@ -2,9 +2,11 @@ package org.execute.dto;
 
 import jakarta.persistence.Column;
 import lombok.*;
+import org.execute.domain.Gen;
+import org.execute.domain.Position;
+
 
 @Getter
-@Builder
 public class UpdateRequest {
     private Long memMstIdx;
     private String memNme;
@@ -13,6 +15,12 @@ public class UpdateRequest {
     private String phonTal;
     private String emalTal;
     private String emalHed;
+    private Gen memGen;
+    private String memHeight;
+    private Position mainPst;
+    private Position subPst;
+    private String memWeight;
+    private String memHist;
 
     public void setMemNme(String memNme) {
         this.memNme = memNme;
@@ -42,7 +50,30 @@ public class UpdateRequest {
         this.phonTal = phonTal;
     }
 
-    public UpdateRequest(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed) {
+    public void setMemGen(Gen memGen) {this.memGen = memGen; }
+
+    public void setMemHeight(String memHeight) {
+        this.memHeight = memHeight;
+    }
+
+    public void setMainPst(Position mainPst) {
+        this.mainPst = mainPst;
+    }
+
+    public void setSubPst(Position subPst) {
+        this.subPst = subPst;
+    }
+
+    public void setMemWeight(String memWeight) {
+        this.memWeight = memWeight;
+    }
+
+    public void setMemHist(String memHist) {
+        this.memHist = memHist;
+    }
+
+    @Builder
+    public UpdateRequest(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed, Gen memGen, String memWeight, String memHeight,Position mainPst, Position subPst, String memHist) {
         this.memMstIdx = memMstIdx;
         this.memNme = memNme;
         this.phonHed = phonHed;
@@ -50,6 +81,12 @@ public class UpdateRequest {
         this.phonTal = phonTal;
         this.emalTal = emalTal;
         this.emalHed = emalHed;
+        this.memGen = memGen;
+        this.memHeight = memHeight;
+        this.memWeight = memWeight;
+        this.mainPst = mainPst;
+        this.subPst = subPst;
+        this.memHist = memHist;
     }
 
     //기본생성자

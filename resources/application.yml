@@ -27,8 +27,9 @@ spring:
         org.hibernate.SQL: DEBUG  # Hibernate SQL 쿼리 로그 출력
         org.hibernate.type.descriptor.sql.BasicBinder: TRACE  # 쿼리 바인딩 값 출력
 jwt:
- secret: my-secret-key
-
+ issuer: tncksrhd@naver.com
+ secret: c3R1ZHktc3ByaW5nYm9vdC1zZWNyZXQtbG9uZy1rZXktc3RyaW5n
+ expiration: 310
 logging:
   level:
       org.springframework.web: DEBUG

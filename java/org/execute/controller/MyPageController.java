@@ -36,7 +36,7 @@ public class MyPageController {
         }
         try {
             myPageService.updateMem(updateRequest.getMemMstIdx(), updateRequest.getMemNme(),
-                    updateRequest.getPhonHed(), updateRequest.getPhonBod(), updateRequest.getPhonTal(), updateRequest.getEmalTal(), updateRequest.getEmalHed());
+                    updateRequest.getPhonHed(), updateRequest.getPhonBod(), updateRequest.getPhonTal(), updateRequest.getEmalTal(), updateRequest.getEmalHed(), updateRequest.getMemGen(), updateRequest.getMainPst(), updateRequest.getSubPst(), updateRequest.getMemWeight(), updateRequest.getMemHeight(), updateRequest.getMemHist());
         return new ResponseEntity<>("사용자 정보 수정 완료", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("서버 오류! 다시 시도해주세요.", HttpStatus.INTERNAL_SERVER_ERROR);

@@ -36,7 +36,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())  // CSRF 비활성화
                 .cors(withDefaults())  // CORS 설정 활성화 (CorsConfig.java 적용됨)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/signup", "/auth/login", "profile/**", "team/**", "team/recommand/list").permitAll()
+                        .requestMatchers("/auth/signup", "/auth/logout", "/auth/login", "profile/**", "team/**", "team/recommand/list", "/auth/me", "team/findTeamIdxByLeader", "notice/**").permitAll()
 //                        .requestMatchers("/profile/**").authenticated()
                         .anyRequest().authenticated()
                 )

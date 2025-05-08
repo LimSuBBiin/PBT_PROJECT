@@ -2,7 +2,9 @@ package org.execute.service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.execute.domain.Gen;
 import org.execute.domain.Mem;
+import org.execute.domain.Position;
 import org.execute.dto.MemDto;
 import org.execute.repository.MemRepository;
 import org.springframework.stereotype.Service;
@@ -22,12 +24,12 @@ public class MyPageService {
 
     @Transactional
     //수정
-    public void updateMem(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed){
+    public void updateMem(Long memMstIdx, String memNme, String phonHed, String phonBod, String phonTal, String emalTal, String emalHed, Gen memGen, Position mainPst, Position subPst, String memWeight, String memHeight, String memHist){
         System.out.println("전달된 memMstIdx: " + memMstIdx);
         Optional<Mem> mem = memRepository.findByMemMstIdx(memMstIdx);
         System.out.println("findByMemMstIdx 호출 후 mem 존재 여부: " + mem.isPresent());
         if(mem.isPresent()) {
-            memRepository.updateMyPage(memMstIdx, memNme, phonHed, phonBod, phonTal, emalTal, emalHed);
+            memRepository.updateMyPage(memMstIdx, memNme, phonHed, phonBod, phonTal, emalTal, emalHed, memGen, memHeight, memWeight, mainPst, subPst, memHist);
             System.out.println("수정완료");
         } else {
             System.out.println("수정실패 : 사용자를 찾을 수 없습니다.");

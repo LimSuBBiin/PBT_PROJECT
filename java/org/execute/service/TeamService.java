@@ -3,6 +3,7 @@ package org.execute.service;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.execute.domain.*;
+import org.execute.dto.team.GetTeamListDto;
 import org.execute.dto.team.TeamMemberQueryDto;
 import org.execute.dto.team.TeamReqMemDto;
 import org.execute.dto.team.TeamRequestQueryDto;
@@ -93,6 +94,13 @@ public class TeamService {
         TeamMember teamMember = TeamMember.createTeamMember(team,mem,RoleType.MEMBER,TeamReqStatus.대기);
 
         teamMemberRepository.makeTeamMember(teamMember);
+    }
+
+
+    public List<GetTeamListDto> findMyteam(Long memMstIdx){
+        System.out.println("memMstIdx값 확인: "+memMstIdx);
+        List<GetTeamListDto> getTeamListDto = teamMemberQueryRepository.findMyTeamList(memMstIdx);
+        return getTeamListDto;
     }
 
 }

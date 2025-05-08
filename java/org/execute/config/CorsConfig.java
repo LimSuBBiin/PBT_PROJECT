@@ -19,8 +19,7 @@ public class CorsConfig {
                         .allowedOrigins("http://localhost:3000")  // 프론트엔드 주소
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .allowedHeaders("/**")
-                        .allowedHeaders("Authorization", "Content-Type")
+                        .allowedHeaders("Authorization", "Content-Type", "*")
                         .allowCredentials(true);
             }
         };

@@ -48,11 +48,36 @@ public class Mem {
     @Column(name = "EMAL_TAL", length = 50)
     private String emalTal;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "MEM_GEN", length = 3)
-    private String memGen;
+    private Gen memGen;
 
+
+    //관리자 확인용
     @Column(name = "MEM_ROLE", length = 20)
     private String memRole;
+    
+    
+    //회원 키
+    @Column(name = "MEM_HEIGHT", length = 10)
+    private String memHeight;
+
+    //주 포지션
+    @Enumerated(EnumType.STRING)
+    @Column(name = "MAIN_PST", length = 10)
+    private Position mainPst;
+    
+    //서브 포지션
+    @Enumerated(EnumType.STRING)
+    @Column(name = "SUB_PST", length = 10)
+    private Position subPst;
+    
+    //회원 몸무게
+    @Column(name = "MEM_WEIGHT", length = 10)
+    private String memWeight;
+
+    @Column(name = "MEM_HIST", length = 10)
+    private String memHist;
 
     public String[] getRoles() {
         return new String[]{this.memRole}; // memRole을 배열로 변환

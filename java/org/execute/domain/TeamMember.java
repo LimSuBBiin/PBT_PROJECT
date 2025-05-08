@@ -1,10 +1,14 @@
 package org.execute.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -39,7 +43,12 @@ public class TeamMember {
     @Column(name = "reg_dt", updatable = false)
     private LocalDateTime regDt; // 현재 시간 자동 설정
 
+    @Column(name = "reject_dt", nullable = true)
+    private LocalDateTime rejectDt;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "teamMember", fetch = FetchType.LAZY)
+    private List<GameRequest> gameRequests = new ArrayList<>();
     //연관관계 메소드
     public void setTeam(Team team){
         this.team =team;
@@ -58,6 +67,15 @@ public class TeamMember {
         return teamMember;
     }
 
+    public void approve() {
+        this.joinStatus = TeamReqStatus.승인;
+        this.rejectDt = null;
+    }
+
+    public void reject() {
+        this.joinStatus = TeamReqStatus.거절;
+        this.rejectDt = LocalDateTime.now();
+    }
 
     /**
      *

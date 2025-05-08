@@ -33,8 +33,10 @@ public class Team {
     @JoinColumn(name = "TEAM_LEADER_IDX", nullable = false)
     private Mem teamLeader;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "team")
     private List<TeamMember> teamMembers = new ArrayList<>(); // 팀원 관계 (1:N)
+
 
 
     //연관관계 정리
